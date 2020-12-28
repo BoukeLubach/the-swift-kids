@@ -22,7 +22,7 @@ class FTPtestListView(LoginRequiredMixin, ListView):
             'userFTPtests': userFTPtests
         }
 
-        return render(request, 'FTPtest_listview.html', context=context)
+        return render(request, 'ftptest_listview.html', context=context)
 
 class FTPtestDeleteView(LoginRequiredMixin, DeleteView):
     model = FTPtest
@@ -63,5 +63,5 @@ def ftptest_create(request):
             redirect('/FTPtest/')
     else:
         form = FTPtestForm()
-        return render(request, 'FTPtest_form.html', {'form': form})
+        return render(request, 'ftptest_form.html', {'form': form})
 
