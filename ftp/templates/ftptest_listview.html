@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+
+
+{% block content %}
+<div class="no-bottom no-top" id="content">
+
+  <!-- section begin -->
+  <section id="subheader" data-bgimage="url({% static 'images/background/5.png) bottom' %}">
+    <div class="center-y relative text-center" data-scroll-speed="4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
+              <div class="col-md-12 text-center">
+                <h1>FTP overview </h1>
+                <p> </p>
+              </div>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- section close -->
+
+
+  <!-- section begin -->
+  <section class="no-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h3 class='text-center'>All tests</h3>
+          <table class="table js-sort-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>FTP</th>
+                <th>Weight</th>
+                <th>WKG</th>
+                <th>Date</th>
+                <th>Test protocol</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for FTPtest in FTPtests %}
+              <tr>
+                <td>{{ FTPtest.user }}</td>
+                <td>{{ FTPtest.FTP }}</td>
+                <td>{{ FTPtest.weight }}</td>
+                <td>{{ FTPtest.wkg }}</td>
+                <td>{{ FTPtest.date }}</td>
+                <td>{{ FTPtest.testType }}</td>
+                {% if FTPtest.user == user %}
+                <td><a href="{% url 'FTP-test-delete' FTPtest.id %}" role='button'
+                    class="btn btn-outline-danger">Delete</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="col pb-5 text-center">
+            <a href="{% url 'FTP-test-add' %}" role='button' class="btn btn-outline-info">Add result</a>
+          </div>
+
+        </div>
+
+
+        <div class="col-md-3 offset-1">
+          <h3 class='text-center'>Personal tests</h3>
+          <div class="timeline exp">
+            {% for userFTP in userFTPtests %}
+            <div class="tl-block wow fadeInUp" data-wow-delay="0">
+              <div class="tl-time">
+                <h4> {{ userFTP.date }} </h4>
+              </div>
+              <div class="tl-bar">
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-message">
+                <div class="tl-icon">&nbsp;</div>
+                <div class="tl-main">
+                  <h4 class="id-color">{{ userFTP.FTP }}
+                  </h4>
+                  <p style="white-space: nowrap;">{{ userFTP.testType }}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+  </section>
+</div>
+
+<div class="position-relative overflow-hidden p-1 m-md-3 text-center bg-light">
+  <div class="col-md-6 p-1 mx-auto ">
+    <h3 class="display-4 font-weight-normal"></h3>
+
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+
+  </div>
+
+</div>
+<script src="{% static 'main/js/sort-table.js' %}"></script>
+{% endblock content %}

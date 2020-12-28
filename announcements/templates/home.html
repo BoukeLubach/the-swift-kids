@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<!-- content begin -->
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+
+    <section data-bgimage="url({% static 'images/background/zwift_bg_2_white.jpg' %}) bottom" class="full-height vertical-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 wow fadeInRight" data-wow-delay=".5s">
+                    <h4>Races / results / workouts</h4>
+                    <div class="spacer-10"></div>
+                    <h1>The <span class="id-color">Swift</span> Kids</h1>
+
+                    <div class="spacer-20"></div>
+
+                    <div class="mb-sm-30"></div>
+                </div>
+
+                <div class="col-lg-6 offset-lg-1 wow fadeInLeft" data-wow-delay=".5s">
+                    <img src="{% static 'images/tsk_logo/logo-transparant.gif' %}" class="img-fluid" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-highlight" data-bgimage="url() top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="text-center">
+                        <h2><span class="uptitle id-color">The Swift Kids</span>What included?</h2>
+
+                        <div class="spacer-20"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- feature box begin -->
+                <div class="col-lg-4 col-md-6 mb40 wow fadeInUp" data-wow-delay="0s">
+                    <div class="feature-box f-boxed style-3">
+                        <i class="bg-color i-circle fa fa-table"></i>
+                        <div class="text">
+                            <a href="">
+                                <h4>Team race results</h4>
+                            </a>
+
+                        </div>
+                        <i class="wm fa fa-table"></i>
+                    </div>
+                </div>
+                <!-- feature box close -->
+
+                <!-- feature box begin -->
+                <div class="col-lg-4 col-md-6 mb40 sq-item wow fadeInUp" data-wow-delay=".25s">
+                    <div class="feature-box f-boxed style-3">
+                        <i class="bg-color i-circle fa fa-hdd-o"></i>
+                        <div class="text">
+                            <a href="">
+                                <h4>Race signups</h4>
+                            </a>
+
+                        </div>
+                        <i class="wm fa fa-hdd-o"></i>
+                    </div>
+                </div>
+                <!-- feature box close -->
+
+                <!-- feature box begin -->
+                <div class="col-lg-4 col-md-6 mb40 sq-item wow fadeInUp" data-wow-delay=".5s">
+                    <div class="feature-box f-boxed style-3">
+                        <i class="bg-color i-circle fa fa-line-chart"></i>
+                        <div class="text">
+                            <a href="">
+                                <h4>Race Analytics</h4>
+                            </a>
+
+                        </div>
+                        <i class="wm i-circle fa fa-line-chart"></i>
+                    </div>
+                </div>
+                <!-- feature box close -->
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    {% endblock content %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="no-bottom no-top" id="content">
+  <div id="top"></div>
+
+  <!-- section begin -->
+  <section id="subheader" data-bgimage="url({% static 'images/background/3d_180degC.png) bottom' %}">
+    <div class="center-y relative text-center" data-scroll-speed="4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
+              <div class="col-md-12 text-center">
+                <h1>Race overview</h1>
+                <p>ZRL season 2 </p>
+              </div>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- section close -->
+
+
+  <!-- section begin -->
+  <section class="no-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 offset-1">
+
+          <table class="table js-sort-table">
+
+            <thead class='thead-dark'>
+              <tr>
+                <th>Race</th>
+                <th>Course</th>
+                <th>Date </th>
+                <th>Race type</th>
+                <th>Distance</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for race in races %}
+              <tr>
+                <td>{{ race.number }}</td>
+                <td>{{ race.course }}</td>
+                <td>{{ race.date }}</td>
+                <td>{{ race.racetype }} </td>
+                <td>{{ race.distance }}</td>
+
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- section close -->
+
+</div>
+
+<div class="position-relative overflow-hidden p-1 m-md-3 text-center bg-light">
+  <div class="col-md-6 p-1 mx-auto ">
+    <h3 class="display-4 font-weight-normal"></h3>
+
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+
+  </div>
+
+</div>
+
+{% endblock content %}

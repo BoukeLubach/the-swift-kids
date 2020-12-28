@@ -1,0 +1,82 @@
+{% load static %}
+<!-- footer begin -->
+<section data-bgimage="url({% static 'images/background/7.png' %}) center">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</section>
+
+<footer data-bgimage="url({% static 'images/background/7.png' %}) center" class="footer-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+
+            </div>
+
+            <div class="col-lg-2">
+                <div class="widget">
+                    <h5>Links</h5>
+                    <ul>
+                        <li><a href="index.html">WTRL - Zwift league</a></li>
+                        <li><a href="index-startup.html">Zwiftinsider</a></li>
+                        <li><a href="index-startup.html">Zwiftpower</a></li>
+                        <li><a href="index-coworking.html">Zwift</a></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="widget">
+                    <h5>Pages</h5>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4">
+                <div class="widget">
+                    <h5>Feedback</h5>
+
+                    <p>Ideas for page improvements, leave your feedback here</p>
+                    <form action="blank.php" class="row" id="form_subscribe" method="post" name="form_subscribe">
+                        <div class="col text-center">
+                            <input class="form-control" id="name_1" name="name_1" placeholder="Your feedback"
+                                type="text" /> <a href="#" id="btn-submit"><i class="arrow_right"></i></a>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                    <div class="spacer-10"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+
+            <div class="col-md-12 text-md-right text-sm-left">
+                <div class="social-icons">
+                    <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
+                    <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+                    <a href="#"><i class="fa fa-linkedin fa-lg"></i></a>
+                    <a href="#"><i class="fa fa-google-plus fa-lg"></i></a>
+                    <a href="#"><i class="fa fa-rss fa-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer close -->
+
+<div id="preloader">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>

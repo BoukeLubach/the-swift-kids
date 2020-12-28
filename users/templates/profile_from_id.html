@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="no-bottom no-top" id="content">
+  <div id="top"></div>
+
+  <!-- section begin -->
+  <section id="subheader" data-bgimage="url({% static 'images/background/3d_180degC.png) bottom' %}">
+    <div class="center-y relative" data-scroll-speed="4">
+
+      <div class="container">
+        <div class="row">
+          <div class='col-md-6 offset-1'>
+            <h2 class="account-heading m-1">{{ user.username }}</h2>
+            <small><a class="ml-2" href="#">Edit profile</a></small>
+          </div>
+
+          <div class='row'>
+            <div class="col-md-6 offset-1">
+
+              <table class="table table-borderless">
+
+                <tbody>
+                  <tr>
+                    <td>Email: </td>
+                    <td>{{ user.email }}</td>
+                  </tr>
+                  <tr>
+                    <td>FTP: </td>
+                    <td>{{ profile.FTP }}</td>
+                    <!-- <td>{{ user_FTP_tests }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>Weight: </td>
+                    <td>{{ profile.weight }}</td>
+                  </tr>
+                  <tr>
+                    <td>WKG: </td>
+                    <td>{{ profile.wkg }}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section>
+    <div class="content-section">
+      <div class="row">
+        <div class="col-md-6 offset-1">
+
+          <h3 class='text-center'>Race results</h3>
+          <div class="col-12">
+            <table class="table table-borderless">
+              <thead class='thead-dark'>
+                <tr>
+                  <th>Race</th>
+                  <th>Team</th>
+                  <th>Category</th>
+                  <th>Team result</th>
+                  <th>|</th>
+                  <th>Individual place</th>
+                  <th>KOM points</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for result in user_riderresult %}
+                <tr>
+                  <td>{{ result.race.course }} </td>
+                  <td>The Swift Kids - {{ result.teamresult.team }}</td>
+                  <td>A</td>
+                  <td>{{ result.teamresult.place }}</td>
+                  <td></td>
+                  <td>{{ result.finish_place }}</td>
+                  <td>{{ result.KOM_points }}</td>
+                </tr>
+                {% endfor %}
+
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+        <div class="col-md-3 offset-1">
+          <h3 class='text-center'>FTP tests</h3>
+          <div class="timeline exp">
+            {% for userFTP in userFTPtests %}
+            <div class="tl-block wow fadeInUp" data-wow-delay="0">
+              <div class="tl-time">
+                <h4> {{ userFTP.date }} </h4>
+              </div>
+              <div class="tl-bar">
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-message">
+                <div class="tl-icon">&nbsp;</div>
+                <div class="tl-main">
+                  <h4 class="id-color">{{ userFTP.FTP }}
+                  </h4>
+                  <p style="white-space: nowrap;">{{ userFTP.testType }}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="section-fun-facts" class="pt40 pb40 text-light" style="background-color:var(--primary-color);">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm">
+          <div class="de_count">
+            <h3 class="timer" data-to="8" data-speed="3000">0</h3>
+            <span>Races participated</span>
+          </div>
+        </div>
+
+        <div class="col-sm">
+          <div class="de_count">
+            <h3 class="timer" data-to="72" data-speed="3000">0</h3>
+            <span>Race points</span>
+          </div>
+        </div>
+
+        <div class="col-sm" data-wow-delay=".5s">
+          <div class="de_count">
+            <h3 class="timer" data-to="1" data-speed="3000">0</h3>
+            <span>Seasons active</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+ 
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,82 @@
+{% load static %}
+
+
+
+<!-- header begin -->
+<header class="header-light transparent scroll-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between">
+                    <div class="align-self-center header-col-left">
+                        <!-- logo begin -->
+                        <!-- logo begin -->
+                        <div id="logo">
+                            <a href="{% url 'home' %}">
+                                <img alt="" src="{% static 'images/tsk_logo/logo-small-transparant.gif' %}"
+                                    height="75" />
+                            </a>
+                        </div>
+                        <!-- logo close -->
+                        <!-- logo close -->
+                    </div>
+                    <div class="align-self-center ml-auto header-col-mid">
+                        <!-- mainmenu begin -->
+                        <ul id="mainmenu">
+                            <li>
+                                <a href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'race-listview' 1 %}">Leagues</a>
+                                <ul>
+                                    <li><a href="{% url 'race-listview' 1 %}">ZRL - season 1</a></li>
+                                    <li><a href="{% url 'race-listview' 2 %}">ZRL - season 2</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{% url 'season-listview' %}">Results</a>
+                                <ul>
+                                    <li><a href="{% url 'season-1-results' 1 %}">ZRL - season 1</a></li>
+                                    <li><a href="{% url 'season-1-results' 2 %}">ZRL - season 2</a></li>
+                                    <li><a href="{% url 'race-analytics' %}">Race analytics</a></li>
+                                   
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{% url 'rider-listview' %}">Riders</a>
+                                <ul>
+                                    <li><a href="{% url 'rider-listview' %}">Riderlist</a></li>
+                                    <li><a href="{% url 'FTP-test-overview' %}">FTP tests</a></li>
+                                    <li><a href="{% url 'FTP-test-add' %}">Add ftp testresult</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Workouts</a>
+                                <ul>
+                                    <li><a href="#">Under construction</a></li>
+
+                                </ul>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="align-self-center ml-auto header-col-right">
+                        <a class="btn-custom" href="{% url 'profile' %}">Profile</a>
+                        <span id="menu-btn"></span>
+
+                    </div>
+                    {% else %}
+                    <div class="align-self-center ml-auto header-col-right">
+                        <a class="btn-custom" href="{% url 'login' %}">Login</a>
+                        <span id="menu-btn"></span>
+
+                    </div>
+                    {% endif %}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header close -->

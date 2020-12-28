@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="no-bottom no-top" id="content">
+
+    <!-- section begin -->
+    <section id="subheader" data-bgimage="url({% static 'images/background/5.png) bottom' %}">
+        <div class="center-y relative text-center" data-scroll-speed="4">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 offset-lg-2 text-center wow fadeIn" data-wow-delay=".5s">
+                        <div class="box-rounded padding40" data-bgcolor="#ffffff">
+                            <h3 class="mb10">Add result</h3>
+                            <p>Update your FTP</p>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    {{ form.date|as_crispy_field}}
+                                    {{ form.user|as_crispy_field}}
+                                    {{ form.FTP|as_crispy_field}}
+                                    {{ form.weight|as_crispy_field}}
+                                    {{ form.testType|as_crispy_field}}
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-info" type="submit">Save</button>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section close -->
+
+</div>
+{% endblock content %}

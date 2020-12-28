@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+
+    <div class="no-bottom no-top" id="content">
+        <div id="top"></div>
+        
+        <!-- section begin -->
+        <section id="subheader" data-bgimage="url({% static 'images/background/3d_180degC.png' %}) bottom">
+                <div class="center-y relative text-center" data-scroll-speed="4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
+                            <div class="col-md-12 text-center">
+                                <h1>Add new race</h1>
+                                <!-- <p>Awsome Page Teaser Here</p> -->
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <!-- section close -->
+        
+        <section class="no-top">
+            <div class="container">
+                <div class="row">
+                
+                    <div class="content-section col-md-6 offset-3">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <!-- <legend class="border-bottom mb-4 text-center">Add new race </legend> -->
+                                {{ form.number|as_crispy_field }}
+                                {{ form.season|as_crispy_field }}
+                                {{ form.course|as_crispy_field }}
+                                {{ form.distance|as_crispy_field }}
+                                {{ form.racetype|as_crispy_field }}
+                                {{ form.date|as_crispy_field }}
+                
+                            </fieldset>
+                
+                
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                <div>
+            </div>	
+        </section>
+
+        <section data-bgimage="url({% static 'images/background/7.png' %} ) center">
+            <div class="container">
+               
+            </div>
+        </section>
+        
+        <section id="section-fun-facts" class="pt40 pb40 text-light bg-color-3">
+            <div class="container">
+
+
+            </div>
+        </section>
+
+    </div>
+{% endblock content %}
