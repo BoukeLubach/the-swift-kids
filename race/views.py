@@ -23,8 +23,10 @@ class RaceListView(LoginRequiredMixin, ListView):
     def get(self, request, *args, **kwargs):
         season_nr = self.kwargs.get('season')
         races = Race.objects.filter(season = season_nr)
+        print(season_nr)
         context = {
             races:'races',
+            season_nr: "season_nr"
         }
         return render(request, 'racelistview.html', context=context)
 

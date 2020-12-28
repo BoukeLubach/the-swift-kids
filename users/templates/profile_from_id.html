@@ -11,52 +11,52 @@
 
       <div class="container">
         <div class="row">
-          <div class='col-md-6 offset-1'>
+          <div class='col-md-6'>
             <h2 class="account-heading m-1">{{ user.username }}</h2>
             <small><a class="ml-2" href="#">Edit profile</a></small>
           </div>
+        </div>
+        <div class='row'>
+          <div class="col-md-6 offset-2">
 
-          <div class='row'>
-            <div class="col-md-6 offset-1">
+            <table class="table table-borderless">
 
-              <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td class="text-left">Zwiftpower profile: </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="text-left">FTP: </td>
+                  <td>{{ profile.FTP }}</td>
+                  <!-- <td>{{ user_FTP_tests }}</td> -->
+                </tr>
+                <tr>
+                  <td class="text-left">Weight: </td>
+                  <td>{{ profile.weight }}</td>
+                </tr>
+                <tr>
+                  <td class="text-left">WKG: </td>
+                  <td>{{ profile.wkg }}</td>
+                </tr>
 
-                <tbody>
-                  <tr>
-                    <td>Email: </td>
-                    <td>{{ user.email }}</td>
-                  </tr>
-                  <tr>
-                    <td>FTP: </td>
-                    <td>{{ profile.FTP }}</td>
-                    <!-- <td>{{ user_FTP_tests }}</td> -->
-                  </tr>
-                  <tr>
-                    <td>Weight: </td>
-                    <td>{{ profile.weight }}</td>
-                  </tr>
-                  <tr>
-                    <td>WKG: </td>
-                    <td>{{ profile.wkg }}</td>
-                  </tr>
-
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
+    </div>
   </section>
 
-  <section>
-    <div class="content-section">
+  <section class="no-top">
+    <div class="container">
       <div class="row">
-        <div class="col-md-6 offset-1">
+        <div class="col-md-8">
 
           <h3 class='text-center'>Race results</h3>
           <div class="col-12">
-            <table class="table table-borderless">
-              <thead class='thead-dark'>
+            <table class="table">
+              <thead>
                 <tr>
                   <th>Race</th>
                   <th>Team</th>
@@ -85,6 +85,7 @@
             </table>
           </div>
         </div>
+
         <div class="col-md-3 offset-1">
           <h3 class='text-center'>FTP tests</h3>
           <div class="timeline exp">
@@ -119,21 +120,21 @@
       <div class="row">
         <div class="col-sm">
           <div class="de_count">
-            <h3 class="timer" data-to="8" data-speed="3000">0</h3>
+            <h3 class="timer" data-to="10" data-speed="2000">0</h3>
             <span>Races participated</span>
           </div>
         </div>
 
         <div class="col-sm">
           <div class="de_count">
-            <h3 class="timer" data-to="72" data-speed="3000">0</h3>
+            <h3 class="timer" data-to="65" data-speed="2000">0</h3>
             <span>Race points</span>
           </div>
         </div>
 
         <div class="col-sm" data-wow-delay=".5s">
           <div class="de_count">
-            <h3 class="timer" data-to="1" data-speed="3000">0</h3>
+            <h3 class="timer" data-to="1" data-speed="2000">0</h3>
             <span>Seasons active</span>
           </div>
         </div>
@@ -142,7 +143,7 @@
 
     </div>
   </section>
- 
+
 </div>
 
 
