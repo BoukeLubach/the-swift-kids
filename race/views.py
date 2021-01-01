@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView  
 from .models import Race, RaceRegistration, Team, Season
@@ -12,7 +12,18 @@ class RaceCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Race
     template = 'race_form.html'
     form_class = RaceForm
-    success_url = reverse_lazy('race-overview')
+    success_url = reverse_lazy('race-listview')
+
+    def get_initial(self):
+        season = get_object_or_404(Season, id=self.kwargs.get('season'))
+        print(season)
+
+
+        return {
+            "season": season
+        }
+
+
 
     def test_func(self):
         return self.request.user.is_staff
@@ -23,10 +34,10 @@ class RaceListView(LoginRequiredMixin, ListView):
     def get(self, request, *args, **kwargs):
         season_nr = self.kwargs.get('season')
         races = Race.objects.filter(season = season_nr)
-        print(season_nr)
+
         context = {
-            races:'races',
-            season_nr: "season_nr"
+            'races':races,
+            "season_nr": season_nr
         }
         return render(request, 'racelistview.html', context=context)
 

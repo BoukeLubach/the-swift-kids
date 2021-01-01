@@ -23,8 +23,10 @@ class Race(models.Model):
     racetype = models.CharField(max_length = 15, choices = racetype_options)
     date = models.DateField()
     elevation = models.IntegerField(blank=True, null=True)
-
     season = models.ForeignKey(Season, models.CASCADE, blank=True, null=True)
+    zwiftinsider_route_link = models.URLField(max_length = 128, blank=True, null=True)
+
+
 
     @property
     def is_finished(self):

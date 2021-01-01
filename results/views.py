@@ -8,8 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
 
-
-
 class Season1ResultsListView(LoginRequiredMixin, ListView):
 
     def get(self, request, *args, **kwargs):

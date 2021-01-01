@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from django.views.static import serve 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('FTPtest/', include('ftp.urls')),
     path('', include('users.urls')),
     path('', include('announcements.urls')),
+
 ] 
 
 
