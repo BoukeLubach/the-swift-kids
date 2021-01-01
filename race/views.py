@@ -12,12 +12,14 @@ class RaceCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Race
     template = 'race_form.html'
     form_class = RaceForm
-    success_url = reverse_lazy('race-listview')
+
+
+    def get_success_url(self):
+        season = get_object_or_404(Season, id=self.kwargs.get('season'))
+        return reverse_lazy('race-listview', kwargs={'season': season.id})
 
     def get_initial(self):
         season = get_object_or_404(Season, id=self.kwargs.get('season'))
-        print(season)
-
 
         return {
             "season": season
