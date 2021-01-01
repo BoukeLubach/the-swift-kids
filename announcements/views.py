@@ -36,5 +36,5 @@ logging.config.dictConfig({
 })
 
 def home(request):
-    logger.warning("Test!!")
+    logger.info("Debugger test!!")
     return render(request, 'home.html')
