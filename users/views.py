@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
-from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetDoneView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile
 from ftp.models import FTPtest
@@ -11,13 +11,18 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
 from django.views.generic import View, ListView, DetailView
 
-class LoginView(auth_views.LoginView):
-    template_name = 'login.html'
+class LoginView(LoginView):
+    template_name = 'users/login.html'
 
-class LogoutView(auth_views.LogoutView):
-    template_name = 'logout.html'
+class LogoutView(LogoutView):
+    template_name = 'users/logout.html'
 
+class MyPasswordChangeView(PasswordChangeView):
+    template_name = 'users/password_change.html'
+    success_url = reverse_lazy('password-change-done')
 
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'users/password_reset_done.html'
 
 @login_required
 def profile_by_id(request, pk):
