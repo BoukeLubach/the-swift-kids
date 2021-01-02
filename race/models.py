@@ -26,7 +26,9 @@ class Race(models.Model):
     season = models.ForeignKey(Season, models.CASCADE, blank=True, null=True)
     zwiftinsider_route_link = models.URLField(max_length = 128, blank=True, null=True)
 
-
+    class Meta:
+        unique_together = [['number', 'season']]
+    
 
     @property
     def is_finished(self):

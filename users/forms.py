@@ -11,9 +11,5 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class ProfileUpdateForm(forms.Form):
 
-    class Meta:
-        model = Profile
-        fields = ['FTP', 'Weight']
 

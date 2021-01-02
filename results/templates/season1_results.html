@@ -76,10 +76,9 @@
 
                             {% for raceresult in raceresults %}
                             <tr>
-                                <td><a href="{% url 'season1-raceresults-detail' team raceresult.race.id %}">{{
-                                        raceresult.race.number }}</a></td>
-                                <td><a href="{% url 'season1-raceresults-detail' team raceresult.race.id %}">{{
-                                        raceresult.race.course }}</a></td>
+                                <td> {{ raceresult.race.number }}</td>
+                                <td><a href="{% url 'season1-raceresults-detail' team raceresult.race.id %}">
+                                    {{ raceresult.race.course }}</a></td>
                                 <td>{{ raceresult.race.racetype }} </td>
                                 <td>{{ raceresult.place }} / {{raceresult.team_participating }}</td>
                                 <td>{{ raceresult.riders }}</td>

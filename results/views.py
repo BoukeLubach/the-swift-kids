@@ -49,3 +49,21 @@ def season_listview(request):
 def race_analytics(request):
 
     return render(request, 'race_analytics.html', context={})
+
+
+
+
+@login_required
+def season1_raceresult_detail(request, team, race):
+
+    team = Team.objects.get(id=team)
+    race = Race.objects.get(number=race, season=1)
+
+    riderResult = RiderResult.objects.filter(race=race, team=team)
+    
+    context = {
+        "race": race,
+        "team": team,
+        "riderResults": riderResult,
+    }
+    return render(request, 'season1_results_detail.html', context=context)

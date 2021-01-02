@@ -24,6 +24,7 @@ class MyPasswordChangeView(PasswordChangeView):
 class MyPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'users/password_reset_done.html'
 
+
 @login_required
 def profile_by_id(request, pk):
     selected_profile = Profile.objects.get(id=pk)
@@ -31,45 +32,32 @@ def profile_by_id(request, pk):
 
     try:
         userFTPtests = FTPtest.objects.filter(user=selected_user).order_by('-date')
+        current_user_metrics = userFTPtests.first()
         user_riderresult = RiderResult.objects.filter(rider=selected_user.id)
     except:
         userFTPtests = "No data available"
         user_riderresult = "No data available"
 
+
     context = {
-        'profile': profile,
+        'profile': selected_profile,
         'userFTPtests': userFTPtests,
         'user_riderresult': user_riderresult,
     }
-    
-    return render(request, 'profile_from_id.html', context=context)
+
+    print(current_user_metrics)
+    return render(request, 'users/profile_from_id.html', context=context)
 
 
-
-@login_required
-def profile(request):
-
-    try:
-        userFTPtests = FTPtest.objects.filter(user=request.user).order_by('-date')
-        user_riderresult = RiderResult.objects.filter(rider=request.user.id)
-    except:
-        userFTPtests = "No data available"
-        user_riderresult = "No data available"
-
-    context = {
-        'profile': profile,
-        'userFTPtests': userFTPtests,
-        'user_riderresult': user_riderresult,
-    }
-    
-    return render(request, 'profile_from_id.html', context=context)
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
-    model = Profile
-    fields = ['FTP', 'weight']
-    success_url = reverse_lazy('profile')
 
+    model = Profile
+    fields = ['zwiftpower_link']
+    def get_success_url(self, **kwargs):
+
+        return reverse_lazy("profile-by-id", kwargs={'pk': self.request.user.id})
 
 
 def register():

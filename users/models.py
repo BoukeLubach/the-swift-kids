@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    zwiftpower_link = models.URLField(max_length = 128, blank=True, null=True)
     FTP = models.IntegerField(default = 0)
     weight = models.FloatField(default = 0)
     
