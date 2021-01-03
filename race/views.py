@@ -13,7 +13,6 @@ class RaceCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     template = 'race_form.html'
     form_class = RaceForm
 
-
     def get_success_url(self):
         season = get_object_or_404(Season, id=self.kwargs.get('season'))
         return reverse_lazy('race-listview', kwargs={'season': season.id})
@@ -25,10 +24,9 @@ class RaceCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
             "season": season
         }
 
-
-
     def test_func(self):
         return self.request.user.is_staff
+
 
 
 class RaceListView(LoginRequiredMixin, ListView):
@@ -41,11 +39,11 @@ class RaceListView(LoginRequiredMixin, ListView):
             'races':races,
             "season_nr": season_nr
         }
-        return render(request, 'racelistview.html', context=context)
+        return render(request, 'race/racelistview.html', context=context)
 
 
 @login_required
-def raceview(request, pk):
+def race_detailview(request, pk):
     user_signed_up = RaceRegistration.objects.filter(participant=request.user, race_id=pk).exists()
     show_signup_button = not user_signed_up
 
@@ -58,4 +56,40 @@ def raceview(request, pk):
     }
     
     return render(request, 'race/race_detail.html', context=context)
+
+
+
+
+class RaceRegistrationView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        race_id = self.kwargs.get('pk')
+        RaceRegistration(race = Race.objects.get(id=race_id),  participant=request.user).save()
+
+        return redirect(f'/race/{race_id}/')
+
+
+class StaffRaceRegisterView(LoginRequiredMixin, CreateView):
+    model = RaceRegistration
+    template = 'raceregistration_form.html'
+    fields = '__all__'
+    success_url = '/race/{race_id}'
+
+    def get_context_data(self, **kwargs):
+        event_name = Race.objects.get(id=self.kwargs['pk'])
+        context = super(StaffRaceRegisterView, self).get_context_data(**kwargs)
+        context['event_name'] = event_name
+        
+        return context
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
+
+class SignupDeleteView(LoginRequiredMixin, DeleteView):
+
+    model = RaceRegistration
+    success_url = '/race/{race_id}'
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 

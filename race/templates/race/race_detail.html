@@ -1,6 +1,5 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 <div class="no-bottom no-top" id="content">
-    <div id="top"></div>
 
     <!-- section begin -->
     <section id="subheader" data-bgimage="url({% static 'images/background/3d_180degC.png' %}) bottom">
@@ -10,8 +9,8 @@
                     <div class="col-md-8 offset-md-2">
                         <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
                             <div class="col-md-12 text-center">
-                                <h1>Riders</h1>
-                                <p> </p>
+                                <h1>Race overview</h1>
+                                <p>ZRL season {{ season_nr }} </p>
                             </div>
                             <div class="clearfix"></div>
                         </form>
@@ -29,48 +28,48 @@
             <div class="row">
                 <div class="col-md-10 offset-1">
 
-                    <h3></h3>
-                    <div class="spacer30"></div>
-
-
-
-                    <table class="table js-sort-table">
+                    <table class="table  js-sort-table">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Participant</th>
                                 <th>FTP</th>
                                 <th>Weight</th>
-                                <th>Wkg</th>
+                                <th>wkg</th>
+                                <th></th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            {% for rider in riders %}
+                            {% for signup in signups %}
                             <tr>
-                                <td><a href="{% url 'profile-by-id' rider.user.id %}">{{ rider.user }}</a></td>
-                                <td>{{ rider.FTP }}</td>
-                                <td>{{ rider.weight }}</td>
-                                <td>{{ rider.wkg }}</td>
+                                <td>{{ signup.participant}}</td>
+                                <td>{{ signup.participant.profile.FTP }}</td>
+                                <td>{{ signup.participant.profile.weight }}</td>
+                                <td>{{ signup.participant.profile.wkg|floatformat:2 }}</td>
+                                {% if signup.participant == user %}
+                                <td><a href="{% url 'remove-signup' signup.id %}" role='button' class='btn-link'>Cancel
+                                        signup</a></td>
+                                {% else %}
+                                <td></td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
+            <div class="row mt-3">
+                {% if show_signup_button %}
+                <div class="col pb-5 text-center">
+                    <a href="{% url 'race-signup' race_id %}" role='button' class="btn btn-outline-info">Signup</a>
+                </div>
+            </div>
+            {% endif %}
         </div>
 
     </section>
     <!-- section close -->
 
-</div>
-
-<div class="position-relative overflow-hidden p-1 m-md-3 text-center bg-light">
-    <div class="col-md-6 p-1 mx-auto ">
-        <h3 class="display-4 font-weight-normal"></h3>
-
-        <div class="product-device shadow-sm d-none d-md-block"></div>
-
-    </div>
 
 </div>
-
 {% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "users/profile_base.html" %} {% load static %} {% block profile %}
+
+<div class="col-md-3 offset-1">
+    <h3 class='text-center'>FTP tests</h3>
+    <div class="timeline exp">
+        {% for userFTP in userFTPtests %}
+        <div class="tl-block wow fadeInUp" data-wow-delay="0">
+            <div class="tl-time">
+                <h4> {{ userFTP.date }} </h4>
+            </div>
+            <div class="tl-bar">
+                <div class="tl-line"></div>
+            </div>
+            <div class="tl-message">
+                <div class="tl-icon">&nbsp;</div>
+                <div class="tl-main">
+                    <h4 class="id-color">{{ userFTP.FTP }}
+                    </h4>
+                    <p style="white-space: nowrap;">{{ userFTP.testType }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock profile %}

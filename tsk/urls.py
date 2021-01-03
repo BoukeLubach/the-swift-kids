@@ -23,7 +23,6 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', user_views.register, name='register'),
     path('race/', include('race.urls')),
     path('results/', include('results.urls')),
     path('FTPtest/', include('ftp.urls')),

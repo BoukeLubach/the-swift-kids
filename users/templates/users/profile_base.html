@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+
+    <!-- section begin -->
+    <section id="subheader" data-bgimage="url({% static 'images/background/3d_180degC.png' %}) bottom">
+        <div class="center-y relative" data-scroll-speed="4">
+
+            <div class="container ml-5">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="pricing-s1 mb30">
+                            <div class="top">
+                                <h2>{{ user.username }}</h2>
+                                <p class="plan-tagline">Profile page</p>
+                            </div>
+
+                            <div class="bottom">
+                                <ul class="list-group">
+                                    <a href="{% url 'profile-by-id' user.id %}">
+                                        <li class="list-group-item list-group-item-action {{ link_class.profile }}"><i class="fa fa-address-card"></i>Profile page</li>
+                                    </a>
+                                    <a href="{% url 'account-view' user.id %}">
+                                        <li class="list-group-item list-group-item-action {{ link_class.account }}"><i class="fa fa-wrench"></i>Account settings</li>
+                                    </a>
+                                    <a href="{% url 'profile-raceresults' user.id %}">
+                                        <li class="list-group-item list-group-item-action {{ link_class.results }}"><i class="fa fa-trophy"></i>Race results</li>
+                                    </a>
+                                    <a href="{% url 'profile-ftptests' user.id %}">
+                                        <li class="list-group-item list-group-item-action {{ link_class.ftp }}"><i class="fa fa-line-chart"></i>FTP tests</li>
+                                    </a>
+                                    <a href="{% url 'password-change-view' %}">
+                                        <li class="list-group-item list-group-item-action {{ link_class.password }}"><i class="fa fa-lock"></i>Change password</li>
+                                    </a>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {% block profile %} {% endblock profile %}
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="section-fun-facts" class="pt40 pb40 text-light" style="background-color:var(--primary-color);">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="de_count">
+                        <h3 class="timer" data-to="10" data-speed="2000">0</h3>
+                        <span>Races participated</span>
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="de_count">
+                        <h3 class="timer" data-to="65" data-speed="2000">0</h3>
+                        <span>Race points</span>
+                    </div>
+                </div>
+
+                <div class="col-sm" data-wow-delay=".5s">
+                    <div class="de_count">
+                        <h3 class="timer" data-to="1" data-speed="2000">0</h3>
+                        <span>Seasons active</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+
+{% endblock content %}

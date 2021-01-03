@@ -1,0 +1,37 @@
+{% extends "users/profile_base.html" %} {% load static %} {% block profile %}
+
+<div class="col-md-8">
+    <h3 class='text-center'>Race results</h3>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Race</th>
+                    <th>Team</th>
+                    <th>Category</th>
+                    <th>Team result</th>
+                    <th>|</th>
+                    <th>Individual place</th>
+                    <th>KOM points</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in user_riderresult %}
+                <tr>
+                    <td>{{ result.race.course }} </td>
+                    <td>The Swift Kids - {{ result.teamresult.team }}</td>
+                    <td>A</td>
+                    <td>{{ result.teamresult.place }}</td>
+                    <td></td>
+                    <td>{{ result.finish_place }}</td>
+                    <td>{{ result.KOM_points }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+{% endblock profile %}
