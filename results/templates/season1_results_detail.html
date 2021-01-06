@@ -35,7 +35,7 @@
     <section class="no-top">
         <div class="container">
             <div class="row">
-                <div class="col-md-10 offset-1">
+                <div class="col-md-12 offset-1">
 
                     <table class="table js-sort-table">
 
@@ -47,6 +47,10 @@
                                 <th>Finish points</th>
                                 <th>KOM points</th>
                                 <th>Total points</th>
+                                <th>15s power</th>
+                                <th>1min power</th>
+                                <th>5min power</th>
+                                <th>20min power</th>
                                 <th>Fit file</th>
                             </tr>
                         </thead>
@@ -60,7 +64,10 @@
                                 <td>{{ riderResult.finish_points }}</td>
                                 <td>{{ riderResult.KOM_points }}</td>
                                 <td>{{ riderResult.total_points }}</td>
-                                
+                                <td>{{ riderResult.power_15s|floatformat:0 }}</td>
+                                <td>{{ riderResult.power_1min|floatformat:0 }}</td>
+                                <td>{{ riderResult.power_5min|floatformat:0 }}</td>
+                                <td>{{ riderResult.power_20min|floatformat:0 }}</td>
                                 {% if riderResult.fit_file %}
                                 <td><i class="fa fa-check"></i></td>
                                 {% elif riderResult.rider == user %}

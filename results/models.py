@@ -35,8 +35,8 @@ class RiderResult(models.Model):
     teamresult = models.ForeignKey(RaceResult, models.SET_NULL, blank=True, null=True)
     fit_file = models.FileField(upload_to='fit_files', blank=True, null=True)
     fit_file_name = models.CharField(max_length=124, blank=True, null=True)
-    avg_power = models.IntegerField(blank=True, null=True)
-    norm_power = models.IntegerField(blank=True, null=True)
+    avg_power = models.DecimalField(max_digits = 6, decimal_places = 2, blank=True, null=True)
+    norm_power = models.DecimalField(max_digits = 6, decimal_places = 2, blank=True, null=True)
 
     power_15s = models.DecimalField(max_digits = 6, decimal_places = 2, blank=True, null=True)
     power_1min = models.DecimalField(max_digits = 6, decimal_places = 2, blank=True, null=True)

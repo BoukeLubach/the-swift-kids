@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from race.models import Race, RaceRegistration, Team, Season
 from .models import RiderResult, RaceResult
 from .forms import FitfileUploadForm
-from .fit_processing import calculate_4d_power
+from .fit_processing import process_fit_file
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy, reverse
@@ -77,7 +77,7 @@ def upload_fit_file(request, season, team, race):
 
     result_model_ids = {"season": season, "team": team, "race": race}
     try:
-        model_to_add_file_to = RiderResult.objects.get(rider=request.user, team=team, race=race)
+        riderresult_object = RiderResult.objects.get(rider=request.user, team=team, race=race)
     except:
         print("no results model exists for rider, team, user combination")
         return HttpResponseRedirect(reverse('upload-failed-user-not-available', kwargs=result_model_ids))
@@ -88,12 +88,10 @@ def upload_fit_file(request, season, team, race):
         if form.is_valid():
 
             if request.FILES['file'].name.lower().endswith(('.fit')):
-                model_to_add_file_to.fit_file = request.FILES['file']
-                model_to_add_file_to.fit_file_name = request.FILES['file'].name
-                # power_15s, power_1min, power_5min, power_20min = calculate_4d_power(request.FILES['file'])
-                
-                print(calculate_4d_power(request.FILES['file'].name))
-                model_to_add_file_to.save()
+                riderresult_object.fit_file = request.FILES['file']
+                riderresult_object.fit_file_name = request.FILES['file'].name
+                riderresult_object.save()
+                process_fit_file(request.FILES['file'].name, riderresult_object)
                 
             else:
                 print("file uploaded not a .fit file")
