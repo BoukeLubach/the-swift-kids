@@ -12,16 +12,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
-                        <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
-                            <div class="col-md-12 text-center">
-                                <h1>Race results</h1>
-                                <p>ZRL season 1 </p>
-                                <div>
-                                    <a href="https://www.wtrl.racing/zrl/ZRL-results.php"> <small>Go to full results at ZRL</small></a>
-                                 </div>
+
+                        <div class="col-md-12 text-center">
+                            <h1>Race results</h1>
+                            <p>ZRL season 1 </p>
+                            <div>
+                                <a href="https://www.wtrl.racing/zrl/ZRL-results.php"> <small>Go to full results at
+                                        ZRL</small></a>
                             </div>
-                            <div class="clearfix"></div>
-                        </form>
+                        </div>
+                        <div class="clearfix"></div>
+
                     </div>
                 </div>
             </div>
@@ -39,30 +40,39 @@
                     <table class="table js-sort-table">
 
                         <thead class='thead-dark'>
-                          <tr>
-                            <th>Rider</th>
-                            <th>Finish place</th>
-                            <th>|</th>
-                            <th>Finish points</th>
-                            <th>KOM points</th>
-                            <th>Total points</th>
-                          </tr>
+                            <tr>
+                                <th>Rider</th>
+                                <th>Finish place</th>
+                                <th>|</th>
+                                <th>Finish points</th>
+                                <th>KOM points</th>
+                                <th>Total points</th>
+                                <th>Fit file</th>
+                            </tr>
                         </thead>
                         <tbody>
-                    
-                          {% for riderResult in riderResults %}
-                          <tr>
-                            <td>{{ riderResult.rider }}</td>
-                            <td>{{ riderResult.finish_place }}</td>
-                            <td></td>
-                            <td>{{ riderResult.finish_points }}</td>
-                            <td>{{ riderResult.KOM_points }}</td>
-                            <td>{{ riderResult.total_points }}</td>
-                          </tr>
-                          {% endfor %}
-                    
+
+                            {% for riderResult in riderResults %}
+                            <tr>
+                                <td>{{ riderResult.rider }}</td>
+                                <td>{{ riderResult.finish_place }}</td>
+                                <td></td>
+                                <td>{{ riderResult.finish_points }}</td>
+                                <td>{{ riderResult.KOM_points }}</td>
+                                <td>{{ riderResult.total_points }}</td>
+                                
+                                {% if riderResult.fit_file %}
+                                <td><i class="fa fa-check"></i></td>
+                                {% elif riderResult.rider == user %}
+                                <td><a href="{% url 'fitfile-upload' 1 team.id race.id %}">Upload file here</a></td>
+                                {% else %}
+                                <td></td>
+                                {%endif %}
+                            </tr>
+                            {% endfor %}
+
                         </tbody>
-                      </table>
+                    </table>
                 </div>
             </div>
         </div>

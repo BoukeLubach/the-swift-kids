@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<!-- content begin -->
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+
+    <!-- section begin -->
+    <section id="subheader" data-bgimage="url({% static 'images/background/3d_180degC.png' %}) bottom">
+        <div class="center-y relative text-center" data-scroll-speed="4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
+                            <div class="col-md-12 text-center">
+                                <h2>Fit file upload</h2>
+                                <p>Upload your race fit file</p>
+                                
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section close -->
+
+    <section class="no-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="content-section col-md-4 offset-4">
+                    <form enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+</div>
+<!-- content close -->
+
+{% endblock %}
