@@ -70,6 +70,7 @@
                                 <th>Race type</th>
                                 <th>Place</th>
                                 <th># riders </th>
+                                <th>Zwiftpower results</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,11 +78,11 @@
                             {% for raceresult in raceresults %}
                             <tr>
                                 <td> {{ raceresult.race.number }}</td>
-                                <td><a href="{% url 'season1-raceresults-detail' 1 team raceresult.race.id %}">
-                                    {{ raceresult.race.course }}</a></td>
+                                <td><a href="{% url 'season1-raceresults-detail' 1 team raceresult.race.id %}">{{ raceresult.race.course }}</a></td>
                                 <td>{{ raceresult.race.racetype }} </td>
                                 <td>{{ raceresult.place }} / {{raceresult.team_participating }}</td>
                                 <td>{{ raceresult.riders }}</td>
+                                <td><a href="{{ raceresult.zwiftpower_link }}">Zwiftpower link</a></td>
                             </tr>
                             {% endfor %}
 

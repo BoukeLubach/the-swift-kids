@@ -47,7 +47,7 @@
                                 <td>{{ signup.participant.profile.weight }}</td>
                                 <td>{{ signup.participant.profile.wkg|floatformat:2 }}</td>
                                 {% if signup.participant == user %}
-                                <td><a href="{% url 'remove-signup' signup.id %}" role='button' class='btn-link'>Cancel signup</a></td>
+                                <td><a href="{% url 'remove-signup' signup.id %}">Cancel signup</a></td>
                                 {% else %}
                                 <td></td>
                                 {% endif %}

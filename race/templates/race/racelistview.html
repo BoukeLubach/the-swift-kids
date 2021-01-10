@@ -52,7 +52,7 @@
                                 <td>{{ race.date|date:"d - M - Y" }}</td>
                                 <td>{{ race.racetype }} </td>
                                 <td>{{ race.distance }}</td>
-                                <td><a href="{{ race.zwiftinsider_route_link }}" target="_blank">Course link</a></td>
+                                <td><a href="{{ race.zwiftinsider_route_link }}" >Course link</a></td>
                                 <td></td>
                             </tr>
 
@@ -67,7 +67,7 @@
 
 
                                 {% if race.user_is_registered %}
-                                    <td><a href="{% url 'remove-signup' race.user_signup_id %}">Cancel signup </a></td>
+                                    <td><a href="{% url 'remove-signup' race.user_signup_id %}" >Cancel signup </a></td>
                                 {% else %}
                                     <td><a href="{% url 'race-signup' race.id %}">Signup </a></td>
                                 {% endif %}

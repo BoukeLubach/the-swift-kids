@@ -12,7 +12,8 @@ class RaceResult(models.Model):
     division = models.CharField(max_length=124, blank=True, null=True)
     riders = models.IntegerField(blank=True, null=True)
     team_participating = models.IntegerField(blank=True, null=True)
-
+    zwiftpower_link = models.URLField(max_length = 128, blank=True, null=True)
+    
     @property
     def league_points(self):
         finish_points_array = [20, 19, 18, 17, 16, 
