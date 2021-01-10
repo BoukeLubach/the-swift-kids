@@ -29,34 +29,51 @@
             <div class="row">
                 <div class="col-md-10 offset-1">
 
-                    <table class="table js-sort-table">
+                    <table class="table js-sort-table table-hover">
 
-                        <thead class='thead-dark'>
+                        <thead class=''>
                             <tr>
-                                <th>Race</th>
-
+                                <th >Race</th>
                                 <th>Date </th>
-
                                 <th>Race type</th>
                                 <th>Distance</th>
                                 <th>Zwiftinsider course</th>
-                                <th>Signup list</th>
+                                <th>Signup</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
 
                             {% for race in races %}
-                            <tr>
-                                <td>{{ race.number }} - {{ race.course }} </td>
-                                <td>{{ race.date }}</td>
+
+                            {% if race.is_finished %}
+                            <tr class="">
+                                <td><a href="{% url 'race-detail' race.id %}">{{ race.number }} - {{ race.course }} </a></td>
+                                <td>{{ race.date|date:"d - M - Y" }}</td>
                                 <td>{{ race.racetype }} </td>
                                 <td>{{ race.distance }}</td>
-                                <td>
-                                    <a href="{{ race.zwiftinsider_route_link }}" target="_blank">Course link</a>
-                                </td>
-                                <td><a href="{% url 'race-detail' race.id %}">Signup list </a></td>
-
+                                <td><a href="{{ race.zwiftinsider_route_link }}" target="_blank">Course link</a></td>
+                                <td></td>
                             </tr>
+
+
+                            {% else %}
+                            <tr></tr>
+                                <td><a href="{% url 'race-detail' race.id %}">{{ race.number }} - {{ race.course }} </a></td>
+                                <td>{{ race.date|date:"d - M - Y" }}</td>
+                                <td>{{ race.racetype }} </td>
+                                <td>{{ race.distance }}</td>
+                                <td><a href="{{ race.zwiftinsider_route_link }}" target="_blank">Course link</a></td>
+
+
+                                {% if race.user_is_registered %}
+                                    <td><a href="{% url 'remove-signup' race.user_signup_id %}">Cancel signup </a></td>
+                                {% else %}
+                                    <td><a href="{% url 'race-signup' race.id %}">Signup </a></td>
+                                {% endif %}
+                            </tr>
+                            
+                            {% endif %}
                             {% endfor %}
 
                         </tbody>
@@ -67,7 +84,8 @@
         <h3 class="display-4 font-weight-normal"></h3>
         {% if user.is_staff %}
         <div class="col pb-5 text-center">
-            <a href="{% url 'race-create' season_nr %}" role='button' class="btn btn-outline-info">Add race (staff only) </a>
+            <a href="{% url 'race-create' season_nr %}" role='button' class="btn btn-outline-info">Add race (staff only)
+            </a>
         </div>
         {% endif %}
     </section>

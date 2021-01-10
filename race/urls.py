@@ -7,6 +7,7 @@ from .views import (
     StaffRaceRegisterView, 
     SignupDeleteView, 
     RaceRegistrationView,
+    signup_selection
 ) 
 
 urlpatterns = [
@@ -16,4 +17,6 @@ urlpatterns = [
     path('signup/<int:pk>/', RaceRegistrationView.as_view(), name='race-signup'),
     path('signup/<int:pk>/staff_signup', StaffRaceRegisterView.as_view(), name='staff-race-signup'),
     path('signup/<int:pk>/delete', SignupDeleteView.as_view(), name='remove-signup'),
+    path('signup/<int:pk>/select', signup_selection, name='signup-select'),
+
 ]

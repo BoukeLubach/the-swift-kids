@@ -35,6 +35,14 @@ class RaceListView(LoginRequiredMixin, ListView):
         season_nr = self.kwargs.get('season')
         races = Race.objects.filter(season = season_nr)
 
+        for race in races:
+            if RaceRegistration.objects.filter(race=race, participant=request.user).exists():
+                race.user_is_registered = True
+                race.user_signup_id = RaceRegistration.objects.get(race=race, participant=request.user).id
+            else:
+                race.user_is_registered = False
+
+
         context = {
             'races':races,
             "season_nr": season_nr
@@ -93,3 +101,14 @@ class SignupDeleteView(LoginRequiredMixin, DeleteView):
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)
 
+
+@login_required
+def signup_selection(request, pk):
+
+
+    context = {
+        'signups': RaceRegistration.objects.filter(race_id=pk),
+    }
+    
+
+    return render(request, "race/signup_selection.html", context = context)
