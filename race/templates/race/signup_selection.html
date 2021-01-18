@@ -10,7 +10,7 @@
                         <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
                             <div class="col-md-12 text-center">
                                 <h1>Race overview</h1>
-                                <p>ZRL season {{ season_nr }} </p>
+                                <p>ZRL season {{ signups.race.season }} </p>
                             </div>
                             <div class="clearfix"></div>
                         </form>
@@ -35,7 +35,9 @@
                                 <th>FTP</th>
                                 <th>Weight</th>
                                 <th>wkg</th>
-                                <th></th>
+                                <th>Team 1</th>
+                                <th>Team 2</th>
+                                <th>Team B</th>
                             </tr>
                         </thead>
 
@@ -46,11 +48,9 @@
                                 <td>{{ signup.participant.profile.FTP }}</td>
                                 <td>{{ signup.participant.profile.weight }}</td>
                                 <td>{{ signup.participant.profile.wkg|floatformat:2 }}</td>
-                                {% if signup.participant == user %}
-                                <td><a href="{% url 'remove-signup' signup.id %}">Cancel signup</a></td>
-                                {% else %}
-                                <td></td>
-                                {% endif %}
+                                <td><input type="radio" name="radio" value="Team 1"></td>
+                                <td><input type="radio" name="radio" value="Team 2"></td>
+                                <td><input type="radio" name="radio" value="Team B"></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -58,12 +58,12 @@
                 </div>
             </div>
             <div class="row mt-3">
-                {% if show_signup_button %}
+
                 <div class="col pb-5 text-center">
-                    <a href="{% url 'race-signup' race_id %}" role='button' class="btn btn-outline-info">Signup</a>
+                    <a href="" role='button' class="btn btn-outline-info">Save</a>
                 </div>
             </div>
-            {% endif %}
+
         </div>
 
     </section>

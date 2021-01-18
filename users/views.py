@@ -93,7 +93,7 @@ def profile_by_id(request, pk):
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Profile
-    fields = ['zwiftpower_link']
+    fields = ['zwiftpower_link', 'FTP', 'weight']
 
     link_classes = {
         'profile': 'active',
@@ -220,3 +220,5 @@ def profile_ftptests(request, pk):
     }
 
     return render(request, 'users/profile_ftptests.html', context = context)
+
+

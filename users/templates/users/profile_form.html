@@ -6,7 +6,9 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <!-- <legend class="border-bottom mb-4 text-center">Add new race </legend> -->
-            {{ form|crispy }}
+            {{ form.zwiftpower_link|as_crispy_field}}
+            {{ form.FTP|as_crispy_field}}
+            {{ form.weight|as_crispy_field}}
 
         </fieldset>
         <div class="form-group">

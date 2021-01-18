@@ -29,19 +29,6 @@ class Season1ResultsListView(LoginRequiredMixin, ListView):
 
 
 
-# class Season2ResultsListView(LoginRequiredMixin, ListView):
-
-#     def get(self, request, *args, **kwargs):
-#         selected_team = self.kwargs.get('team')
-#         selected_team = 1 if selected_team==None else selected_team
-#         raceresults = RaceResult.objects.filter(team=selected_team, race__season=2)
-
-#         context = {
-#             'team' : selected_team,
-#             'raceresults': raceresults,
-#         }
-
-#         return render(request, 'season2_results.html', context=context)
 
 def season_listview(request):
 

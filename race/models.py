@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import datetime
+from datetime import datetime, date
 
 
 class Season(models.Model):
@@ -28,11 +28,11 @@ class Race(models.Model):
 
     class Meta:
         unique_together = [['number', 'season']]
-    
+
 
     @property
     def is_finished(self):
-        if self.date < datetime.now:
+        if self.date < date.today():
             return True
         else:
             return False
@@ -47,7 +47,10 @@ class RaceRegistration(models.Model):
 
     class Meta:
         unique_together = [['race', 'participant']]
-    
+
+    def __str__(self):
+        return (str(self.participant) + " - Season: " + str(self.race.season) + ", race: " + str(self.race.number))
+
 
 class Team(models.Model):
     name = models.CharField(max_length=100)
